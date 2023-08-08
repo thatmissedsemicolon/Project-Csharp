@@ -17,11 +17,11 @@ For iOS: You need a Mac connected to your network for deploying and debugging. A
 1. Clone the Repository
 bash
 Copy code
-git clone [https://github.com/thatmissedsemicolon/MAUI.git](https://github.com/thatmissedsemicolon/MAUI.git)
-2. Open the Solution in Visual Studio
+git clone [https://github.com/thatmissedsemicolon/My-Maui-App.git](https://github.com/thatmissedsemicolon/My-Maui-App.git)
+3. Open the Solution in Visual Studio
 Navigate to the directory containing the .sln file and double-click to open it in Visual Studio.
 
-3. Select your Desired Deployment Target
+4. Select your Desired Deployment Target
 In the top toolbar:
 
 For Android: Select the desired Android emulator/device.
