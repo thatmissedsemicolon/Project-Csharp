@@ -17,7 +17,7 @@ For iOS: You need a Mac connected to your network for deploying and debugging. A
 1. Clone the Repository
 bash
 Copy code
-git clone https://github.com/YourUsername/MyMauiApp.git
+git clone [https://github.com/YourUsername/MyMauiApp.git](https://github.com/thatmissedsemicolon/MAUI.git)
 2. Open the Solution in Visual Studio
 Navigate to the directory containing the .sln file and double-click to open it in Visual Studio.
 
@@ -28,6 +28,21 @@ For Android: Select the desired Android emulator/device.
 For iOS: Select the desired iOS simulator/device.
 4. Build and Run the App
 Press F5 or click on the Start Debugging button to build and launch the app on your selected target.
+
+📦 Required NuGet Packages
+
+For this project, we utilize several essential NuGet packages to enhance its functionality:
+
+1. Newtonsoft.Json
+Used for JSON serialization and deserialization.
+
+bash
+Copy code
+Install-Package Newtonsoft.Json
+2. System.Net.Http
+This namespace contains the HttpClient class for sending HTTP requests and receiving HTTP responses from a URI.
+
+Note: Starting with .NET Core and .NET 5, System.Net.Http is part of the .NET runtime, meaning you don't need to install an additional package for it.
 
 💡 Tips
 
