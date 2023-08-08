@@ -1,0 +1,85 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PP.MAUI.Views.EmployeeView"
+             Title="Manage Employees">
+
+    <ScrollView>
+        <StackLayout Spacing="30" Padding="40">
+            <!--<SearchBar x:Name="searchBar" 
+                       Placeholder="Search for a employee..."
+                       SearchCommand="{Binding SearchCommand}"
+                       SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}" />-->
+
+             <SearchBar x:Name="searchBar" 
+                   Placeholder="Search for a employee..."
+                   TextChanged="OnSearchTextChanged" />
+
+            <Label Text="Employee Name:" />
+            <Entry Placeholder="Enter employee name" 
+                   Text="{Binding employeeModel.Name, Mode=TwoWay}" />
+
+            <Label Text="Hourly Rate:" />
+            <Entry Placeholder="Enter hourly rate" 
+                   Text="{Binding employeeModel.Rate, Mode=TwoWay}"
+                   Keyboard="Numeric" />
+
+            <StackLayout Orientation="Horizontal" 
+                         Spacing="30" 
+                         HorizontalOptions="CenterAndExpand">
+                <Button Text="Save" 
+                        Command="{Binding AddEmployeeCommand}" />
+                <Button Text="Update" 
+                        Command="{Binding UpdateEmployeeCommand}" 
+                        IsEnabled="{Binding SelectedEmployee}" />
+                <Button Text="Delete" 
+                        Command="{Binding DeleteEmployeeCommand}" 
+                        IsEnabled="{Binding SelectedEmployee}" />
+                <Button Text="Detail View" 
+                        Command="{Binding EmployeeDetailCommand}" 
+                        IsEnabled="{Binding SelectedEmployee}" />
+                <Button Text="Back to Home" 
+                        Clicked="OkClicked" />
+            </StackLayout>
+
+            <ListView ItemsSource="{Binding Employees}" 
+                      SelectedItem="{Binding SelectedEmployee, Mode=TwoWay}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Label Grid.Row="0"
+                                       Grid.Column="0"
+                                       Text="{Binding Id, StringFormat='Employee ID: {0}'}"
+                                       FontSize="18"
+                                       Margin="0,0,0,10"
+                                       Padding="10,20,10,20" />
+
+                                <Label Grid.Row="0"
+                                       Grid.Column="1"
+                                       Text="{Binding Name, StringFormat='Employee Name: {0}'}"
+                                       FontSize="18"
+                                       Margin="0,0,0,10"
+                                       Padding="10,20,10,20" />
+
+                                <Label Grid.Row="0"
+                                       Grid.Column="2"
+                                       Text="{Binding Rate, StringFormat='Employee Rate: {0}'}"
+                                       FontSize="18"
+                                       Margin="0,0,0,10"
+                                       Padding="10,20,10,20" />
+
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

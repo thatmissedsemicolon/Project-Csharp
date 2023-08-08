@@ -1,0 +1,87 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PP.MAUI.Views.ClientView"
+             xmlns:c="clr-namespace:PP.MAUI.Controls"
+             Title="Manage Clients">
+
+    <ScrollView>
+        <StackLayout Spacing="30" Padding="40">
+            <!--<SearchBar x:Name="searchBar" 
+                       Placeholder="Search for a client..."
+                       SearchCommand="{Binding SearchCommand}"
+                       SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}" />-->
+
+            <SearchBar x:Name="searchBar" 
+                   Placeholder="Search for a client..."
+                   TextChanged="OnSearchTextChanged" />
+
+            <Label Text="Client Name:" />
+            <Entry Placeholder="Enter client name" 
+                   Text="{Binding clientModel.Name, Mode=TwoWay}" />
+
+            <Label Text="Is Client Closed:" />
+            <CheckBox IsChecked="{Binding clientModel.IsClosed, Mode=TwoWay}" />
+
+            <Label Text="Client Notes:" />
+            <Entry Placeholder="Enter notes for client" 
+                   Text="{Binding clientModel.Notes, Mode=TwoWay}" />
+
+            <StackLayout Orientation="Horizontal" 
+                         Spacing="30" 
+                         HorizontalOptions="CenterAndExpand">
+                <Button Text="Save" 
+                        Command="{Binding AddClientCommand}" />
+                <Button Text="Update" 
+                        Command="{Binding UpdateClientCommand}" 
+                        IsEnabled="{Binding SelectedClient}" />
+                <Button Text="Delete" 
+                        Command="{Binding DeleteClientCommand}" 
+                        IsEnabled="{Binding SelectedClient}" />
+                <Button Text="Detail View" 
+                        Command="{Binding ClientDetailCommand}" 
+                        IsEnabled="{Binding SelectedClient}" />
+                <Button Text="Back to Home" 
+                        Clicked="OkClicked"/>
+            </StackLayout>
+
+            <ListView ItemsSource="{Binding Clients}" 
+                      SelectedItem="{Binding SelectedClient, Mode=TwoWay}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Label Grid.Row="0"
+                                       Grid.Column="0"
+                                       Text="{Binding Id, StringFormat='Client ID: {0}'}"
+                                       FontSize="18"
+                                       Margin="0,0,0,10"
+                                       Padding="10,20,10,20" />
+
+                                <Label Grid.Row="0"
+                                       Grid.Column="1"
+                                       Text="{Binding Name, StringFormat='Name: {0}'}"
+                                       FontSize="18"
+                                       Margin="0,0,0,10"
+                                       Padding="10,20,10,20" />
+
+                                <Label Grid.Row="0"
+                                       Grid.Column="2"
+                                       Text="{Binding IsClosed, StringFormat='Is Closed: {0}'}"
+                                       FontSize="18"
+                                       Margin="0,0,0,10"
+                                       Padding="10,20,10,20" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

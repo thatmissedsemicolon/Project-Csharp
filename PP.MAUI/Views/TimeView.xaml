@@ -1,0 +1,126 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PP.MAUI.Views.TimeView"
+             Title="Manage Time">
+
+    <ScrollView>
+        <StackLayout Spacing="30" Padding="40">
+
+            <SearchBar x:Name="searchBar" 
+                   Placeholder="Search for a time record..."
+                   TextChanged="OnSearchTextChanged" />
+
+
+            <Label Text="Narrative:" />
+            <Entry Placeholder="Enter narrative" 
+                   Text="{Binding timeModel.Narrative, Mode=TwoWay}" />
+
+            <Label Text="Hours:" />
+            <Entry Placeholder="Enter hours" 
+                   Text="{Binding timeModel.Hours, Mode=TwoWay}" />
+
+            <!--<StackLayout>
+                <Label 
+                    Text="{Binding TimerDisplay}"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center" 
+                    FontSize="Large"
+                    HorizontalTextAlignment="Center"/>
+        
+                <Label
+                    Text="Hours:"
+                    FontSize="Medium"
+                    HorizontalOptions="Start"/>
+                <Label
+                    Text="{Binding Time.Hours}"
+                    FontSize="Medium"
+                    HorizontalOptions="Start"/>
+        
+               <StackLayout Orientation="Horizontal" Spacing="10" Margin="10" HorizontalOptions="Center">
+                    <Button Text="Start" Command="{Binding StartCommand}"/>
+                    <Button Text="Stop" Command="{Binding StopCommand}"/>
+                </StackLayout>
+            </StackLayout>-->
+
+            <Label Text="Project Name:" />
+            <Picker 
+                Title="Select a Project" 
+                SelectedItem="{Binding SelectedProject, Mode=TwoWay}"
+                ItemsSource="{Binding Projects}" 
+                ItemDisplayBinding="{Binding Name}" />
+
+            <Label Text="Employee Name:" />
+            <Picker 
+                Title="Select an Employee" 
+                SelectedItem="{Binding SelectedEmployee, Mode=TwoWay}"
+                ItemsSource="{Binding Employees}" 
+                ItemDisplayBinding="{Binding Name}" />
+
+
+            <StackLayout Orientation="Horizontal" 
+                         Spacing="30" 
+                         HorizontalOptions="CenterAndExpand">
+                <Button Text="Save" 
+                        Command="{Binding AddTimeCommand}" />
+                <Button Text="Update" 
+                        Command="{Binding UpdateTimeCommand}" 
+                        IsEnabled="{Binding SelectedTime}" />
+                <Button Text="Delete" 
+                        Command="{Binding DeleteTimeCommand}" 
+                        IsEnabled="{Binding SelectedTime}" />
+                <Button Text="Detail View" 
+                        Command="{Binding TimeDetailCommand}" 
+                        IsEnabled="{Binding SelectedTime}" />
+                <Button Text="Back to Home" 
+                        Clicked="OkClicked" />
+            </StackLayout>
+
+            <ListView ItemsSource="{Binding Times}" 
+                      SelectedItem="{Binding SelectedTime, Mode=TwoWay}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Label Grid.Row="0"
+                                       Grid.Column="0"
+                                       Text="{Binding Narrative, StringFormat='Narrative: {0}'}"
+                                       FontSize="18"
+                                       Margin="0,0,0,10"
+                                       Padding="10,20,10,20" />
+
+                                <Label Grid.Row="0"
+                                       Grid.Column="1"
+                                       Text="{Binding Hours, StringFormat='Hours: {0}'}"
+                                       FontSize="18"
+                                       Margin="0,0,0,10"
+                                       Padding="10,20,10,20" />
+
+                                <Label Grid.Row="0"
+                                       Grid.Column="2"
+                                       Text="{Binding ProjectId, StringFormat='Project ID: {0}'}"
+                                       FontSize="18"
+                                       Margin="0,0,0,10"
+                                       Padding="10,20,10,20" />
+
+                                <Label Grid.Row="0"
+                                       Grid.Column="3"
+                                       Text="{Binding EmployeeId, StringFormat='Employee ID: {0}'}"
+                                       FontSize="18"
+                                       Margin="0,0,0,10"
+                                       Padding="10,20,10,20" />
+
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

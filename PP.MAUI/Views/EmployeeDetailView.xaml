@@ -1,0 +1,119 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PP.MAUI.Views.EmployeeDetailView"
+             Title="Showing Employee Details">
+    <ScrollView>
+        <StackLayout Spacing="20" Padding="30">
+            <Button Text="Back"
+                    FontSize="14"
+                    WidthRequest="150"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Clicked="OkClicked"
+                    Margin="0,0,0,20" />
+
+            <Frame Padding="20" Margin="10,10,10,20" BorderColor="Black">
+                <Grid Padding="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Row="0"
+                           Grid.Column="0"
+                           Text="{Binding EmployeeModel.Id, StringFormat='Employee ID: {0}'}"
+                           FontSize="16"
+                           Margin="0,0,0,10" />
+
+                    <Label Grid.Row="1"
+                           Grid.Column="0"
+                           Text="{Binding EmployeeModel.Name, StringFormat='Employee Name: {0}'}"
+                           FontSize="16"
+                           Margin="0,0,0,10" />
+
+                    <Label Grid.Row="2"
+                           Grid.Column="0"
+                           Text="{Binding EmployeeModel.Rate, StringFormat='Employee Rate: {0}'}"
+                           FontSize="16"
+                           Margin="0,0,0,10" />
+
+                    <CollectionView Grid.Row="3"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    ItemsSource="{Binding EmployeeModel.TimeRecords}"
+                                    HeightRequest="150"
+                                    Margin="0, 40, 0, 0">
+
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame Padding="10" Margin="5,5,5,15" BorderColor="Black">
+                                    <Grid Padding="15">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Grid.Row="0"
+                                               Grid.Column="0"
+                                               Text="{Binding Id, StringFormat='Time ID: {0}'}"
+                                               FontSize="12"
+                                               Margin="0,0,0,5" />
+
+                                        <Label Grid.Row="1"
+                                               Grid.Column="0"
+                                               Text="{Binding Date, StringFormat='Date Created: {0:MM/dd/yyyy}'}"
+                                               FontSize="12"
+                                               Margin="0,0,0,5" />
+
+                                        <Label Grid.Row="2"
+                                               Grid.Column="0"
+                                               Text="{Binding Narrative, StringFormat='Narrative: {0}'}"
+                                               FontSize="12"
+                                               Margin="0,0,0,5" />
+
+                                        <Label Grid.Row="3"
+                                               Grid.Column="0"
+                                               Text="{Binding Hours, StringFormat='Hours Taken: {0}'}"
+                                               FontSize="12"
+                                               Margin="0,0,0,5" />
+
+                                        <Label Grid.Row="4"
+                                              Grid.Column="0"
+                                               Text="{Binding ProjectId, StringFormat='Project ID: {0}'}"
+                                               FontSize="12"
+                                               Margin="0,0,0,5" />
+
+
+                                        <Label Grid.Row="5"
+                                               Grid.Column="0"
+                                               Text="{Binding ProjectName, StringFormat='Project Name: {0}'}"
+                                               FontSize="12"
+                                               Margin="0,0,0,5" />
+
+                                    </Grid>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
+            </Frame>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

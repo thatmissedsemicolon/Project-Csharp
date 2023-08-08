@@ -1,0 +1,111 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PP.MAUI.Views.ProjectView"
+             Title="Manage Projects">
+
+    <ScrollView>
+        <StackLayout Spacing="20" Padding="40">
+            <!--<SearchBar x:Name="searchBar" 
+                       Placeholder="Search for a project..."
+                       SearchCommand="{Binding SearchCommand}"
+                       SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}" />-->
+
+            <SearchBar x:Name="searchBar" 
+                   Placeholder="Search for a project..."
+                   TextChanged="OnSearchTextChanged" />
+
+
+            <Label Text="Project Name:" />
+            <Entry Placeholder="Enter project name" 
+                   Text="{Binding projectModel.Name, Mode=TwoWay}" />
+
+            <Label Text="Is Project Closed:" />
+            <CheckBox IsChecked="{Binding projectModel.IsClosed, Mode=TwoWay}" />
+
+            <Label Text="Project Short Name:" />
+            <Entry Placeholder="Enter project short name" 
+                   Text="{Binding projectModel.LongName, Mode=TwoWay}" />
+
+            <Label Text="Project Long Name:" />
+            <Entry Placeholder="Enter project long name" 
+                   Text="{Binding projectModel.ShortName, Mode=TwoWay}" />
+
+            <Label 
+                Text="Client Name:"
+                VerticalOptions="Start" 
+                HorizontalOptions="Start" />
+
+            <Picker 
+                Title="Select Client"
+                SelectedItem="{Binding SelectedClient}"
+                ItemDisplayBinding="{Binding Name}"
+                ItemsSource="{Binding Clients}" />
+
+            <StackLayout Orientation="Horizontal" 
+                         Spacing="30" 
+                         HorizontalOptions="CenterAndExpand">
+                <Button Text="Save" 
+                        Command="{Binding AddProjectCommand}" />
+                <Button Text="Update" 
+                        Command="{Binding UpdateProjectCommand}" 
+                        IsEnabled="{Binding SelectedProject}" />
+                <Button Text="Delete" 
+                        Command="{Binding DeleteProjectCommand}" 
+                        IsEnabled="{Binding SelectedProject}" />
+                 <Button Text="Detail View" 
+                        Command="{Binding ProjectDetailCommand}" 
+                        IsEnabled="{Binding SelectedProject}" />
+                <Button Text="Back to Home" 
+                        Clicked="OkClicked" />
+            </StackLayout>
+
+            <ListView ItemsSource="{Binding Projects}" 
+                      SelectedItem="{Binding SelectedProject, Mode=TwoWay}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Label Grid.Row="0"
+                                       Grid.Column="0"
+                                       Text="{Binding Id, StringFormat='Project ID: {0}'}"
+                                       FontSize="18"
+                                       Margin="0,0,0,10"
+                                       Padding="10,20,10,20" />
+
+                                <Label Grid.Row="0"
+                                       Grid.Column="1"
+                                       Text="{Binding Name, StringFormat='Name: {0}'}"
+                                       FontSize="18"
+                                       Margin="0,0,0,10"
+                                       Padding="10,20,10,20" />
+
+                                <Label Grid.Row="0"
+                                       Grid.Column="2"
+                                       Text="{Binding IsClosed, StringFormat='Is Closed: {0}'}"
+                                       FontSize="18"
+                                       Margin="0,0,0,10"
+                                       Padding="10,20,10,20" />
+
+                                <Label Grid.Row="0"
+                                       Grid.Column="3"
+                                       Text="{Binding Client.Name, StringFormat='Client: {0}'}"
+                                       FontSize="18"
+                                       Margin="0,0,0,10"
+                                       Padding="10,20,10,20" />
+
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

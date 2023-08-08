@@ -1,0 +1,166 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PP.MAUI.Views.ClientDetailView"
+             Title="Showing Client Details">
+    <ScrollView>
+        <StackLayout Spacing="20" Padding="30">
+            <Label Text="Client Details"
+                   FontAttributes="Bold"
+                   FontSize="20"
+                   HorizontalOptions="CenterAndExpand" 
+                   Margin="0,0,0,20"/>
+
+            <Button Text="Back to Client"
+                    FontSize="14"
+                    WidthRequest="150"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Clicked="OkClicked"
+                    Margin="0,0,0,20" />
+
+            <Frame Padding="20" Margin="10,10,10,20" BorderColor="Black">
+                <Grid Padding="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" /> 
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Row="0"
+                           Grid.Column="0"
+                           Text="{Binding ClientModel.Id, StringFormat='Client ID: {0}'}"
+                           FontSize="16"
+                           Margin="0,0,0,10" />
+
+                    <Label Grid.Row="1"
+                           Grid.Column="0"
+                           Text="{Binding ClientModel.Name, StringFormat='Client Name: {0}'}"
+                           FontSize="16"
+                           Margin="0,0,0,10" />
+
+                    <Label Grid.Row="2"
+                           Grid.Column="0"
+                           Text="{Binding ClientModel.IsClosed, StringFormat='Client isClosed: {0: Active/Inactive}'}"
+                           FontSize="16"
+                           Margin="0,0,0,10" />
+
+                    <Label Grid.Row="3"
+                           Grid.Column="0"
+                           Text="{Binding ClientModel.Notes, StringFormat='Client Notes: {0}'}"
+                           FontSize="16"
+                           Margin="0,0,0,10" />
+
+                    <Label Grid.Row="0"
+                           Grid.Column="1"
+                           Text="{Binding ClientModel.Projects.Count, StringFormat='Number of Projects Associated with the client: {0}'}"
+                           FontSize="16"
+                           Margin="0,0,0,10" />
+
+                    <Label Grid.Row="1"
+                           Grid.Column="2"
+                           Text="{Binding ClientModel.OpenDate, StringFormat='Client OpenDate: {0}'}"
+                           FontSize="16"
+                           Margin="0,0,0,10" />
+
+                    <Label Grid.Row="2"
+                           Grid.Column="3"
+                           Text="{Binding ClientModel.ClosedDate, StringFormat='Client ClosedDate: {0}'}"
+                           FontSize="16"
+                           Margin="0,0,0,10" />
+
+                    <CollectionView Grid.Row="4"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2" 
+                                    ItemsSource="{Binding ClientModel.Projects}"
+                                    HeightRequest="150"> 
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame Padding="10" Margin="5,5,5,15" BorderColor="Black">
+                                    <Grid Padding="15">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" /> 
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Grid.Row="0"
+                                                Grid.Column="0"
+                                                Text="{Binding Id, StringFormat='Project ID: {0}'}"
+                                                FontSize="14"
+                                                Margin="0,0,0,5" />
+
+                                        <Label Grid.Row="1"
+                                                Grid.Column="0"
+                                                Text="{Binding Name, StringFormat='Project Name: {0}'}"
+                                                FontSize="14"
+                                                Margin="0,0,0,5" />
+
+                                        <Label Grid.Row="2"
+                                                Text="{Binding IsClosed, StringFormat='Project isClosed: {0: Active/Inactive}'}"
+                                                FontSize="14"
+                                                Margin="0,0,0,5" />
+
+                                        <CollectionView Grid.Row="3"
+                                                        Grid.Column="0"
+                                                        Grid.ColumnSpan="2"
+                                                        ItemsSource="{Binding Bills}"
+                                                        HeightRequest="150"
+                                                        Margin="0, 20, 0, 0"> 
+                                            <CollectionView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Frame Padding="10" Margin="5,5,5,15" BorderColor="Black">
+                                                        <Grid Padding="15">
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="Auto" />
+                                                                <RowDefinition Height="Auto" />
+                                                                <RowDefinition Height="Auto" />
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="*" />
+                                                                <ColumnDefinition Width="Auto" />
+                                                            </Grid.ColumnDefinitions>
+
+                                                            <Label Grid.Row="0"
+                                                                    Grid.Column="0"
+                                                                    Text="{Binding Id, StringFormat='Bill ID: {0}'}"
+                                                                    FontSize="12"
+                                                                    Margin="0,0,0,5" />
+
+                                                           <Label Grid.Row="1"
+                                                                    Grid.Column="0"
+                                                                    Text="{Binding TotalAmount, StringFormat='Total Amount: {0}'}"
+                                                                    FontSize="12"
+                                                                    Margin="0,0,0,5" />
+
+                                                            <Label Grid.Row="2"
+                                                                    Grid.Column="0"
+                                                                    Text="{Binding DueDate, StringFormat='Due Date: {0:MM/dd/yyyy}'}"
+                                                                    FontSize="12"
+                                                                    Margin="0,0,0,5" />
+                                                        </Grid>
+                                                    </Frame>
+                                                </DataTemplate>
+                                            </CollectionView.ItemTemplate>
+                                        </CollectionView>
+                                    </Grid>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                </Grid>
+            </Frame>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

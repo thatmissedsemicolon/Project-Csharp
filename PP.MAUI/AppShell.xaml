@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="PP.MAUI.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:PP.MAUI"
+    xmlns:local2="clr-namespace:PP.MAUI.Views"
+    Shell.FlyoutBehavior="Disabled">
+
+    <ShellContent
+        Title="Menu"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="Home" />
+
+    <ShellContent
+        Title="Manage Clients"
+        ContentTemplate="{DataTemplate local2:ClientView}"
+        Route="Client" />
+
+    <ShellContent
+        Title="Client Details"
+        ContentTemplate="{DataTemplate local2:ClientDetailView}"
+        Route="ClientDetails" />
+
+    <ShellContent
+        Title="Manage Projects"
+        ContentTemplate="{DataTemplate local2:ProjectView}"
+        Route="Project" />
+
+    <ShellContent
+        Title="Project Details"
+        ContentTemplate="{DataTemplate local2:ProjectDetailView}"
+        Route="ProjectDetails" />
+
+     <ShellContent
+        Title="Employee"
+        ContentTemplate="{DataTemplate local2:EmployeeView}"
+        Route="Employee" />
+
+    <ShellContent
+        Title="Employee"
+        ContentTemplate="{DataTemplate local2:EmployeeDetailView}"
+        Route="EmployeeDetails" />
+
+    <ShellContent
+        Title="Time"
+        ContentTemplate="{DataTemplate local2:TimeView}"
+        Route="Time" />
+
+    <ShellContent
+        Title="Time Details"
+        ContentTemplate="{DataTemplate local2:TimeDetailView}"
+        Route="TimeDetails" />
+
+    <ShellContent
+        Title="Bill"
+        ContentTemplate="{DataTemplate local2:BillView}"
+        Route="Bill" />
+
+    <ShellContent
+        Title="Bill Details"
+        ContentTemplate="{DataTemplate local2:BillDetailView}"
+        Route="BillDetails" />
+
+</Shell>
+

@@ -1,0 +1,100 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PP.MAUI.Views.BillView"
+             Title="Manage Bills">
+
+    <ScrollView>
+        <StackLayout Spacing="30" Padding="40">
+
+            <SearchBar x:Name="searchBar" 
+                   Placeholder="Search for a bill..."
+                   TextChanged="OnSearchTextChanged" />
+
+
+            <Label Text="Project Name:" />
+            <Picker 
+                Title="Select a Project" 
+                SelectedItem="{Binding SelectedProject, Mode=TwoWay}"
+                ItemsSource="{Binding Projects}" 
+                ItemDisplayBinding="{Binding Name}" />
+
+            <Label Text="Due Date:" />
+            <DatePicker Date="{Binding DueDate, Mode=TwoWay}" />
+
+            <Label 
+                Text="Total Amount:"
+                VerticalOptions="Start" 
+                HorizontalOptions="Start" />
+
+            <Label 
+                Text="{Binding TotalAmount, Mode=TwoWay}"
+                VerticalOptions="Start" 
+                HorizontalOptions="Start" />
+
+            <StackLayout Orientation="Horizontal" 
+                         Spacing="30" 
+                         HorizontalOptions="CenterAndExpand">
+                <Button Text="Save" 
+                        Command="{Binding AddBillCommand}" />
+                <Button Text="Update" 
+                        Command="{Binding UpdateBillCommand}" 
+                        IsEnabled="{Binding SelectedBill}" />
+                <Button Text="Delete" 
+                        Command="{Binding DeleteBillCommand}" 
+                        IsEnabled="{Binding SelectedBill}" />
+                <Button Text="Detail View" 
+                        Command="{Binding BillDetailCommand}" 
+                        IsEnabled="{Binding SelectedBill}" />
+                <Button Text="Back to Home" 
+                        Clicked="OkClicked" />
+            </StackLayout>
+
+            <ListView ItemsSource="{Binding Bills}" 
+                      SelectedItem="{Binding SelectedBill, Mode=TwoWay}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Label Grid.Row="0"
+                                       Grid.Column="0"
+                                       Text="{Binding Id, StringFormat='Bill ID: {0}'}"
+                                       FontSize="18"
+                                       Margin="0,0,0,10"
+                                       Padding="10,20,10,20" />
+
+                                <Label Grid.Row="0"
+                                       Grid.Column="1"
+                                       Text="{Binding ProjectId, StringFormat='Project ID: {0}'}"
+                                       FontSize="18"
+                                       Margin="0,0,0,10"
+                                       Padding="10,20,10,20" />
+
+                                <Label Grid.Row="0"
+                                       Grid.Column="2"
+                                       Text="{Binding DueDate, StringFormat='Due Date: {0}'}"
+                                       FontSize="18"
+                                       Margin="0,0,0,10"
+                                       Padding="10,20,10,20" />
+
+                                <Label Grid.Row="0"
+                                       Grid.Column="3"
+                                       Text="{Binding TotalAmount, StringFormat='Total Amount: {0}'}"
+                                       FontSize="18"
+                                       Margin="0,0,0,10"
+                                       Padding="10,20,10,20" />
+
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
