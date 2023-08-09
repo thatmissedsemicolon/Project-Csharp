@@ -12,6 +12,7 @@ If not already installed, open the Visual Studio Installer and modify your insta
 Mobile Development Emulators
 For Android: Ensure you have Android Emulator setup.
 For iOS: You need a Mac connected to your network for deploying and debugging. Also, ensure that Xcode and the necessary simulators are installed.
+
 🔧 Setup & Run
 
 1. Clone the Repository
